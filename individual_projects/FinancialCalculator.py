@@ -59,3 +59,38 @@ def compound():
     #ask user for starting amount
     while True:
         start = input("What is your starting amount?\n")
+        if is_num(start) == True:
+            start = int(start)
+            break
+        elif is_num(start) == False:
+            print("Invalid choice.")
+            continue
+        else:
+            print("Something broke.")
+            continue
+    
+    #ask user for interest rate
+    while True:
+        interest = input("What is the interest rate?\n")
+        if is_num(interest) == True:
+            interest = int(interest)
+            break
+        elif is_num(interest) == False:
+            print("Invalid choice.")
+            continue
+        else:
+            print("Something broke.")
+            continue
+    
+    #ask user for how long they wait
+    while True:
+        time = input("How long will you leave your money?\n")
+        if is_num(time) == True:
+            time = int(time)
+            break
+        elif is_num(time) == False:
+            print("Invalid choice.")
+            continue
+        else:
+            print("Something broke.")
+            continue
