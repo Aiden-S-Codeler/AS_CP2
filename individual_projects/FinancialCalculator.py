@@ -8,6 +8,20 @@ def is_num(user_input):
     else:
         return False
 
+#make function to check if is_num is true and then make input number
+def check(uinput):
+    while True:
+        if is_num(uinput) == True:
+            uinput = int(uinput)
+            break
+        elif is_num(uinput) == False:
+            uinput = input("Invalid choice. Try again.\n")
+            continue
+        else:
+            print("Something broke.")
+            continue
+    return uinput
+
 #Make function to see how long it takes to save for a specific monetary amount
 def savings():
     #ask how often user deposits
@@ -20,30 +34,14 @@ def savings():
             continue
     
     #ask much user deposits
-    while True:
-        deposit = input("How much do you deposit at once?\n")
-        if is_num(deposit) == True:
-            deposit = int(deposit)
-            break
-        elif is_num(deposit) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    deposit = input("How much do you deposit at once?\n")
+    check(deposit)
+    deposit = check(deposit)
 
     #ask user for savings goal
-    while True:
-        goal = input("How much is your goal?\n")
-        if is_num(goal) == True:
-            goal = int(goal)
-            break
-        elif is_num(goal) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    goal = input("How much is your goal?\n")
+    check(goal)
+    goal = check(goal)
     
     if frequency == "1":
         print(f"It will take you {goal/deposit} weeks to save up ${goal}")
@@ -55,43 +53,18 @@ def savings():
 #Make function for compound interest
 def compound():
     #ask user for starting amount
-    while True:
-        start = input("What is your starting amount?\n")
-        if is_num(start) == True:
-            start = int(start)
-            break
-        elif is_num(start) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    start = input("What is your starting amount?\n")
+    check(start)
+    start = check(start)
     
     #ask user for interest rate
-    while True:
-        interest = input("What is the interest rate?\n")
-        if is_num(interest) == True:
-            interest = int(interest)
-            break
-        elif is_num(interest) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    interest = input("What is the interest rate?\n")
+    
     
     #ask user for how long they wait
-    while True:
-        itime = input("How many years will you let your money collect interest?\n")
-        if is_num(itime) == True:
-            itime = int(itime)
-            break
-        elif is_num(itime) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    itime = input("How many years will you let your money collect interest?\n")
+    check(itime)
+    itime = check(itime)
     
     #make inner function to do compund interest
     def biggering(start, interest, itime):
@@ -107,17 +80,9 @@ def compound():
 def budget():
 
     #ask for amount of categories
-    while True:
-        category_count = input("How many budget categories do you have?\n")
-        if is_num(category_count) == True:
-            category_count = int(category_count)
-            break
-        elif is_num(category_count) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    category_count = input("How many budget categories do you have?\n")
+    check(category_count)
+    category_count = check(category_count)
     
     #make list to hold categories later
     categories = []
@@ -128,61 +93,29 @@ def budget():
         categories.append(category_add)
 
     #get monthly income
-    while True:
-        income = input("What is your monthly income?\n")
-        if is_num(income) == True:
-            income = int(income)
-            break
-        elif is_num(income) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    income = input("What is your monthly income?\n")
+    check(income)
+    income = check(income)
     
     #make budget plan
     for c in categories:
-        while True:
-            spending = input(f"What percentage of your income goes to {c}?\n")
-            if is_num(spending) == True:
-                spending = int(spending)
-                break
-            elif is_num(spending) == False:
-                print("Invalid choice.")
-                continue
-            else:
-                print("Something broke.")
-                continue
+        spending = input(f"What percentage of your income goes to {c}?\n")
+        check(spending)
+        spending = check(spending)
         print(f"{c} is {round((income/100)*spending, 2)}")
         time.sleep(1)
 
 #sales calculator
 def sales_price():
     #ask user for starting cost
-    while True:
-        start = input("What is your starting price?\n")
-        if is_num(start) == True:
-            start = int(start)
-            break
-        elif is_num(start) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    start = input("What is your starting price?\n")
+    check(start)
+    start = check(start)
     
-    #ask user for discount
-    while True:
-        discount = input("What is the discount?\n")
-        if is_num(discount) == True:
-            discount = int(discount)
-            break
-        elif is_num(discount) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    #ask user for discount:
+    discount = input("What is the discount?\n")
+    check(discount)
+    discount = check(discount)
     
     #give final price
     print(f"The final price is ${start - ((start/100)*discount)}")
@@ -191,30 +124,14 @@ def sales_price():
 #tip calculator
 def tip():
     #ask user for starting cost
-    while True:
-        start = input("What is your starting price?\n")
-        if is_num(start) == True:
-            start = int(start)
-            break
-        elif is_num(start) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    start = input("What is your starting price?\n")
+    check(start)
+    start = check(start)
     
     #ask user for discount
-    while True:
-        tip = input("How much will you tip?\n")
-        if is_num(tip) == True:
-            tip = int(tip)
-            break
-        elif is_num(tip) == False:
-            print("Invalid choice.")
-            continue
-        else:
-            print("Something broke.")
-            continue
+    tip = input("How much will you tip?\n")
+    check(tip)
+    tip = check(tip)
     
     #give final price
     print(f"The tip is {(start/100)*tip} and the final price is ${start + ((start/100)*tip)}")
