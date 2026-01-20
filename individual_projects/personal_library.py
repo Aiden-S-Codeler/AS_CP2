@@ -12,3 +12,5 @@ def view(library, exist):
 #make function to add things to library
 def add(library, exist):
     Author = input("")
+    if exist == True:
+        
