@@ -7,10 +7,38 @@ def view(library, exist):
         for i in library:
             print(f"{library[i]} by {i}")
     else:
-        print("You do not yet have a library")
+        print("You do not yet have a library.")
 
 #make function to add things to library
 def add(library, exist):
-    Author = input("")
+    Author = input("Who wrote the book? ")
     if exist == True:
-        
+        library[Author] = {input("What is the book title? ")}
+        print(f"Added {library[Author]} by {Author} to library. If you had another book by that author, it was overwritten.")
+    else:
+        exist = True
+        library[Author] = {input("What is the book title? ")}
+        print(f"Added {library[Author]} by {Author} to library.")
+    return(library, exist)
+
+#make function for removing book
+def remove(library, exist):
+    if exist == True:
+        print("Your library includes:")
+        for i in library:
+            print(f"{library[i]} by {i}")
+        while True:
+            Author = input("What author would you like to remove? ")
+            if Author in library:
+                del library[Author]
+                print(f"{Author} has been removed.")
+                return(library)
+                break
+            else:
+                print(f"There is no author under the name {Author}")
+                continue
+    else:
+        print("You do not yet have a library.")
+
+#make function for
+add({"Larry": "It"}, True)
