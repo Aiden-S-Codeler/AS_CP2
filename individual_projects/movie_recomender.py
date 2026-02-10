@@ -69,8 +69,11 @@ def read_all():
         reader = csv.reader(sample)
 
         for line in reader:
-            print(f"{line[0]}, directed by {line[1]}, genre: {line[2]}, rated {line[3]}, length of {line[4]} minutes, featuring {line[5]}")
-            time.sleep(0.1)
+            if line[0] == 'Title':
+                pass
+            else:
+                print(f"{line[0]}, directed by {line[1]}, genre: {line[2]}, rated {line[3]}, length of {line[4]} minutes, featuring {line[5]}")
+                time.sleep(0.1)
 
 #make function to run main program
 def menu():
