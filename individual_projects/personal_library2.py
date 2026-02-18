@@ -1,7 +1,7 @@
 #AS 2nd personal library 2 electric boogaloo
 import csv
 #make a function to view all things in librarie
-def view(library, exist):
+def view():
     with open("individual_projects/personal_library2.csv", mode= 'r') as sample:
         reader = csv.reader(sample)
         print("Library includes:")
@@ -12,38 +12,40 @@ def view(library, exist):
                 print(f"{line[0]}, written by {line[1]}, genre: {line[2]}")
 
 #make function to add things to library
-def add(library, exist):
-    Author = input("Who wrote the book? ")
-    if library:
-        library[Author] = {input("What is the book title? ")}
-        print(f"Added {library[Author]} by {Author} to library. If you had another book by that author, it was overwritten.")
-    else:
-        exist = True
-        library[Author] = {input("What is the book title? ")}
-        print(f"Added {library[Author]} by {Author} to library.")
-    return(library, exist)
-
+def add():
+    with open("individual_projects/personal_library2.csv", mode= 'a', newline= '') as sample:
+        reader = csv.reader(sample)
+        fieldnames = ['Title','Author','Genre']
+        writer = csv.DictWriter(sample, fieldnames=fieldnames)
+        stuff = {'Title':input("What is the title? ").lower().title().strip(), 'Author':input("Who is the author? ").lower().title().strip(), 'Genre':input("What is the genre? ").lower().title().strip(), 'Length':input("What is the length? ").lower().title().strip()}
+        writer.writerow(stuff)
+        
+        
+        
 #make function for removing book
-def remove(library, exist):
-    if library:
-        print("Your library includes:")
-        for i in library:
-            print(f"{library[i]} by {i}")
-        while True:
-            Author = input("What author would you like to remove? ")
-            if Author in library:
-                del library[Author]
-                print(f"{Author} has been removed.")
-                return(library)
-                break
+def remove():
+    all = []
+    uinput = input("What is the title you would like to remove? ").lower().title().strip()
+    with open("individual_projects/personal_library2.csv", mode= 'r') as sample:
+        reader = csv.reader(sample)
+        for line in reader:
+            if line[0] == 'Title':
+                pass
             else:
-                print(f"There is no author under the name {Author}")
-                continue
-    else:
-        print("You do not yet have a library")
+                all.append({'Title':line[0] ,'Author':line[1] ,'Genre':line[2]})
+        for line in all:
+            if line["Title"] == uinput:
+                all.remove(line)
+            else:
+                pass
+    with open("individual_projects/personal_library2.csv", mode= 'w', newline= '') as sample:
+        fieldnames = ['Title','Author','Genre','Length']
+        writer = csv.DictWriter(sample, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(all)
 
 #make function for searching
-def search(library, exist):
+def search():
     with open("individual_projects/personal_library2.csv", mode= 'r') as sample:
         reader = csv.reader(sample)
         uinput = input("Input title, author, or genre you would like to search for: ")
@@ -56,18 +58,18 @@ def search(library, exist):
 #make function for running code
 def run(library, exist):
     while True:
-        choice = input("Would you like to 1: search for a book, 2: add a book, 3: remove an author, 4: view your library, or 5: leave? Please enter the numeric value of your choice. ")
+        choice = input("Would you like to 1: search for a book, 2: add a book, 3: remove a book, 4: view your library, or 5: leave? Please enter the numeric value of your choice. ")
         if choice == "1":
-            search(library, exist)
+            search()
             continue
         elif choice == "2":
-            library, exist = add(library, exist)
+            add()
             continue
         elif choice == "3":
-            library = remove(library, exist)
+            remove()
             continue
         elif choice == "4":
-            view(library, exist)
+            view()
             continue
         elif choice == "5":
             break
