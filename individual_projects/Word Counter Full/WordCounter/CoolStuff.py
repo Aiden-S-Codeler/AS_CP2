@@ -21,3 +21,15 @@ def word_count(file):
             for word in line.split():
                 count += 1
     print(f"There are {count} words.")
+
+def read_file(file):
+    try:
+        with open(file, 'r') as file:
+            content = []
+            for line in file:
+                content.append(line.strip())
+    except:
+        print("Ruh roh raggy")
+    else:
+        for line in content:
+            print(line)
