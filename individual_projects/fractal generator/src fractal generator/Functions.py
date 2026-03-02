@@ -8,31 +8,40 @@ t.pensize(1)
 t.teleport(-450,-300)
 t.left(60)
 t.speed(0)
+t.color('red')
 
+#make function to 
 def fractalize():
     for x in range(3):
         if x == 0:
+            t.begin_fill()
             for i in range(3):
                 t.forward(25)
                 t.right(120)
+            t.end_fill()
             t.forward(25)
         elif x == 1:
+            t.begin_fill()
             for i in range(3):
                 t.forward(25)
-                t.right(120)  
+                t.right(120)
+            t.end_fill()
             t.forward(25)
             t.right(120)
             t.forward(25)
         elif x == 2:
+            t.begin_fill()
             for i in range(3):
                 t.forward(25)
                 t.right(120)
+            t.end_fill()
             t.left(120*2)
             t.forward(25)
             t.right(120)
             t.forward(25)
             pass
 
+#make function to make man triangle
 def fractalize_2(num):
     current = num
     move = 2
@@ -66,7 +75,7 @@ def fractalize_2(num):
                 t.right(180)
                 t.forward(25*(move))
                 t.right(60)
-
-fractalize_2(4)
+    
+    t.hideturtle()
 
 turtle.done()
