@@ -17,7 +17,16 @@ while True:
     uinput = input("Would you like to 1: create a fractal, or 2: leave")
     if uinput == "1":
         while True:
-            pass
+            uinput = input("How big of a recursion do you want? ")
+            if uinput.isdigit():
+                if int(uinput) > 1:
+                    fractalize_2(int(uinput))
+                else:
+                    print("Invalid input.")
+                    continue
+            else:
+                print("Invalid input.")
+                continue
     elif uinput == "2":
         break
     else:
