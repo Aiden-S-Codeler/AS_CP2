@@ -3,10 +3,10 @@ from matplotlib import pyplot as plt
 
 
 # Creating dataset
-cars = ['AUDI', 'BMW', 'FORD',
-        'TESLA', 'JAGUAR', 'MERCEDES', 'TEST OPTION']
 
-data = [23, 17, 35, 29, 12, 42, 36]
+cars = ['SAVINGS', 'EMERGENCY', 'BILLS', 'FOOD', 'GAS']
+
+data = [1000, 500, 2000, 200, 300]
 
 # Creating plot
 fig = plt.figure(figsize=(10, 7))
