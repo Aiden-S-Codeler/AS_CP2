@@ -7,7 +7,7 @@ rec_count = 1
 
 
 class Square:
-    def __init__(self, side_len, area= 0, perimeter= 0, name= "Square"):
+    def __init__(self, side_len, area= 0, perimeter= 0, name= f"Square{squ_count}"):
         self.side_len = side_len
         self.area = self.side_len * self.side_len
         self.perimeter = self.side_len * 4
@@ -17,7 +17,7 @@ class Square:
         return f"Shape: Square\nSide Length: {self.side_len}\nArea: {self.area}\nPerimeter: {self.perimeter}\n"
 
 class Rectangle:
-    def __init__(self, side_len, base_len, area= 0, perimeter= 0, name= "Rectangle"):
+    def __init__(self, side_len, base_len, area= 0, perimeter= 0, name= f"Rectangle{rec_count}"):
         self.side_len = side_len
         self.base_len = base_len
         self.area = self.side_len * self.base_len
@@ -28,7 +28,7 @@ class Rectangle:
         return f"Shape: Rectangle\nSide Length: {self.side_len}\nBase Length: {self.base_len}\nArea: {self.area}\nPerimeter: {self.perimeter}\n"
 
 class Triangle:
-    def __init__(self, height, base_len, area= 0, perimeter= 0, name= "Triangle"):
+    def __init__(self, height, base_len, area= 0, perimeter= 0, name= f"Triangle{tri_count}"):
         self.height = height
         self.base_len = base_len
         self.area = (self.height * self.base_len)/2
@@ -39,7 +39,7 @@ class Triangle:
         return f"Shape: Triangle\nHeight: {self.height}\nBase Length: {self.base_len}\nArea: {self.area}\nPerimeter: {self.perimeter}\n"
 
 class Circle:
-    def __init__(self, radius, diameter= 0, area= 0, circumference= 0, name= "Circle"):
+    def __init__(self, radius, diameter= 0, area= 0, circumference= 0, name= f"Circle{cir_count}"):
         self.radius = radius
         self.diameter = radius * 2
         self.area = round((3.1415926535 * (radius * radius)), 2)
@@ -95,6 +95,24 @@ def view(library):
     for x in range(len(library)):
         print(f"{x+1}: {library[x].name}")
 
+def specify(library, this):
+    print("Your options are:")
+    view(library)
+    while True:
+        uinput = input(f"\nWhat is your {this} shape? ")
+        if input_check(uinput) == True:
+            uinput = int(uinput)
+        else:
+            print('Invalid choice.')
+            continue
+        if uinput - 1 < len(library):
+            break
+        else:
+            print('Invalid choice.')
+            continue
+    
+    return library[uinput-1]
+
 def edit(library):
     print("Your options are:")
     view(library)
@@ -129,19 +147,19 @@ def create(library, cir_count, tri_count, squ_count, rec_count):
     while True:
         uinput = input('what shape would you like to make: 1: Circle, 2: Triangle, 3: Square, 4: Rectangle ')
         if uinput == '1':
-            library.append(Circle(int_input('radius'), 0, 0, f"Circle{cir_count}"))
+            library.append(Circle(int_input('radius')))
             cir_count += 1
             break
         elif uinput == '3':
-            library.append(Square(int_input('side length'), 0, 0, f"Square{squ_count}"))
+            library.append(Square(int_input('side length')))
             squ_count += 1
             break
         elif uinput == '4':
-            library.append(Rectangle(int_input('side length'), int_input('base length'), 0, 0, f"Rectangle{rec_count}"))
+            library.append(Rectangle(int_input('side length'), int_input('base length')))
             rec_count += 1
             break
         elif uinput == '2':
-            library.append(Triangle(int_input('height'), int_input('base length'), 0, 0, f"Triangle{tri_count}"))
+            library.append(Triangle(int_input('height'), int_input('base length')))
             tri_count += 1
             break
         else:
