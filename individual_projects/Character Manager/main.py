@@ -42,7 +42,7 @@ def main_menu():
             #character viewing
             case "3":
                 character = search(character_index)
-                print(character)
+                print(f'{character.name}\n{character.level}\n{character.stats}\n{character.race}\n{character.uclass}\n')
             
             #dice rolling
             case "4":
