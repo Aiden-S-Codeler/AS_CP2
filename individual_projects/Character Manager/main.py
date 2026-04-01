@@ -22,7 +22,7 @@ def main_menu():
             print("You must make a character first!")
             character_create(character_index)
         character = search(character_index)
-        return character_index[character]
+        return character_index[1]
     #loop forever
     while True:
         #get user choice on what to do
@@ -41,7 +41,7 @@ def main_menu():
 
             #character viewing
             case "3":
-                character = get_character()
+                character = search(character_index)
                 print(character)
             
             #dice rolling

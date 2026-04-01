@@ -6,4 +6,3 @@ from helper import choice_input
 def search(character_index):
         e = input("What is your characters level? ")
         return character_index[1]
-
