@@ -36,7 +36,8 @@ def search(character_index):
     for char in potentials:
         index += 1
         print(f'{index}: {char.capitalize()}')
-    choice = choice_input(potentials + list(range(1,index+1)), "Type the name of the character you want to view: ")
+    print(f"list: {potentials}")
+    choice = choice_input(potentials, "Type the name of the character you want to view: ")
     if choice in potentials:
         return choice
     elif choice in list(range(1,index+1)):

@@ -1,6 +1,6 @@
 #user input
 def u_input(prompt = '> '):
-    return input(prompt).lower().strip()
+    return input(prompt).strip()
 #number input
 def int_input(max = 100000,prompt='> ',min = 0):
     while True:

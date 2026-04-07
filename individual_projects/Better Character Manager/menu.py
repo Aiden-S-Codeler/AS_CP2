@@ -75,9 +75,9 @@ def main_menu():
                 print('\nStats:')
                 for stat in character['stats']:
                     print(f'{stat}: {character['stats'][stat]}') #stat
-                    fig = plt.figure(figsize=(10, 7))
-                    plt.pie(charting, labels=category)
-                    plt.show()
+                fig = plt.figure(figsize=(10, 7))
+                plt.pie(charting, labels=category)
+                plt.show()
                 print('\nSkills:')
                 for skill in character['skills']:
                     print(f'{skill}: {character['skills'][skill]}') #skill
