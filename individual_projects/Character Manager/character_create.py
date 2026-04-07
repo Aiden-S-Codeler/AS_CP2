@@ -38,6 +38,20 @@ racial_bonuses = {
     }
 }
 
+class Stats:
+    def __init__(self, strength, dexterity, magic, resiliance):
+        self.strength = strength
+        self.dexterity = dexterity
+        self.magic = magic
+        self.resiliance = resiliance
+class Character:
+    def __init__(self, name, level, stats, race, uclass, ):
+        self.name = name
+        self.level = level
+        self.stats = stats
+        self.race = race
+        self.uclass = uclass
+
 #character creation
 def character_create(character_index):
     #stat generation
@@ -57,18 +71,15 @@ def character_create(character_index):
             return True
         else:
             return False
-        
     
-        
+    
+    
+    in_stats = []
+
     #get character name
     while 14:
         name = u_input("What is your character's name?: ")
-        if not name in character_index.keys():
-            character_index[name] = {}
-            break
-        else:
-            print("You already have a character with that name. Please try again.")
-            continue
+        break
     
     #get character race
     print(f"Here are the available races: {', '.join(races)}")
@@ -79,16 +90,16 @@ def character_create(character_index):
     class_choice = choice_input(classes,f"What is {name.capitalize()}'s class?: ")
 
     #create character dictionary
-    character_index[name]['key info'] = (raceinput,class_choice)
-    character_index[name]['skills'] = {}
-    character_index[name]['level'] = 0
-    character_index[name]['skill points'] = 0
-    character_index[name]['learned skills'] = set()
+    #character_index[name]['key info'] = (raceinput,class_choice)
+    #character_index[name]['skills'] = {}
+    #character_index[name]['level'] = 0
+    #character_index[name]['skill points'] = 0
+    #character_index[name]['learned skills'] = set()
 
     #get initial inventory
     print(f"\nSetting {name.capitalize()}'s inventory...")
-    character_index[name]['inventory'] = input_inventory([])
-    character_index[name]['stats'] = {}
+    #character_index[name]['inventory'] = input_inventory([])
+    #character_index[name]['stats'] = {}
 
     #get initial stats
     print(f"\nSetting {name.capitalize()}'s stats...")
@@ -114,24 +125,26 @@ def character_create(character_index):
         else:
             print(f'Assigned {stat} to {display_remaining}')
             to_place = list(remaining)[0]
-        character_index[name]['stats'][to_place] = stat
+        in_stats.append(stat)
         remaining.remove(to_place)
+    
+    stats = Stats(in_stats[0], in_stats[1], in_stats[2], in_stats[3])
 
     #add racial stat bonuses
-    for i in character_index[name]['stats'].keys():
-        character_index[name]['stats'][i] += racial_bonuses[raceinput][i]
+    #for i in character_index[name]['stats'].keys():
+    #    character_index[name]['stats'][i] += racial_bonuses[raceinput][i]
 
     #add racial learned skills
-    for skill in racial_bonuses[raceinput]['skills']:
-        if not skill in character_index[name]['learned skills']:
-            character_index[name]['learned skills'].add(skill)
-            character_index[name]['skills'][skill] = 0
-        character_index[name]['skills'][skill] += 1
+    #for skill in racial_bonuses[raceinput]['skills']:
+    #    if not skill in character_index[name]['learned skills']:
+    #        character_index[name]['learned skills'].add(skill)
+    #        character_index[name]['skills'][skill] = 0
+    #    character_index[name]['skills'][skill] += 1
 
     #display final stats
-    print('\nHere are your final stats:')
-    for stat in character_index[name]['stats']:
-        print(f'{stat}: {character_index[name]['stats'][stat]}')
-    character_index[name] = level_up(character_index[name])
-    print(f'{name.capitalize()} has been created!')
+    #print('\nHere are your final stats:')
+    #for stat in character_index[name]['stats']:
+    #    print(f'{stat}: {character_index[name]['stats'][stat]}')
+    character_index.append(Character(name, 1, stats, raceinput, class_choice))
+    #print(f'{name.capitalize()} has been created!')
     return character_index
